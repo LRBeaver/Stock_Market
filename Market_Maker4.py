@@ -52,22 +52,12 @@ def check_portfolio():
     print('\n'+"----------------------")
     print("You chose to check your portfolio")
     print('\n' + "******************")
-    if 'balance' in locals():
-        #current_balance=balance
-        if portfolio == {}:
-            print("You own no stocks")
-            print("You have ${:,}".format(balance))
-        else:
-            print('Portfolio: ', owned_portfolio)
-            print('Cash: ${:,}'.format(current_balance))
+    if portfolio == {}:
+        print("You own no stocks")
+        print("You have ${:,}".format(balance))
     else:
-        if owned_portfolio == {}:
-            print("You own no stocks")
-            print("You have ${:,}".format(balance))
-        else:
-            print('Portfolio: ', owned_portfolio)
-
-            print('Cash: ${:,}'.format(current_balance))
+        print('Portfolio: ', portfolio)
+        print('Cash: ${:,}'.format(balance))
 
 def buy_stocks():
     global portfolio
@@ -98,17 +88,24 @@ def buy_stocks():
 def sell_stocks():
     global portfolio
     global balance
-    print('\n'+"----------------------")
-    print("You chose to sell stocks")
-    sold_ticker=input("What stock would you like to sell?: ")
-    if sold_ticker in portfolio:
+    if portfolio == {}:
+        print('\n' + "----------------------")
+        print("Your portfolio is empty")
+        print("You have ${:,}".format(balance))
+    else:
         print('\n'+"----------------------")
-        shares_to_sell=input("How many shares would you like to sell?: ")
-        if shares_to_sell <= owned_shares:
-            print("Selling x shares:")
+        print("You chose to sell stocks")
+        print(portfolio)
+        sold_ticker=input("What stock would you like to sell?: ")
+        if sold_ticker in portfolio:
+            print('\n'+"----------------------")
+            print("You have " + portfolio[price])
+            shares_to_sell=input("How many shares would you like to sell?: ")
+            if shares_to_sell <= owned_shares:
+                print("Selling x shares:")
 
 def menu():
-    print(portfolio)
+    #print(portfolio)
     #print()
     print('\n'+"----------------------")
     print(""" Market game - stocks
@@ -125,30 +122,24 @@ def menu():
         check_market()
 
     elif action == '2':
-        if 'portfolio' in locals():
-            check_portfolio()
+        #if 'portfolio' in locals():
+        check_portfolio()
              #print("You have ${:,}".format(balance))
-        else:
-            print('\n'+"----------------------")
-            print("You own no stocks")
-            print("You have ${:,}".format(balance))
+        #else:
+            #print('\n'+"----------------------")
+            #print("You own no stocks")
+            #print("You have ${:,}".format(balance))
 
     elif action == '3':
-        if 'market' in locals():
-            print("Used existing")
-            owned_portfolio=(buy_stocks())
-        else:
-            print("Had to make a new one")
-            market=create_market()
-            owned_portfolio=(buy_stocks())
+        buy_stocks()
 
     elif action == '4':
-        if 'portfolio' in locals():
-            sell_stocks()
-        else:
-            print('\n'+"----------------------")
-            print("Your portfolio is empty")
-            print("You have ${:,}".format(balance))
+        #if 'portfolio' in locals():
+        sell_stocks()
+        #else:
+            #print('\n'+"----------------------")
+            #print("Your portfolio is empty")
+            #print("You have ${:,}".format(balance))
 
     else:
         print('\n'+"----------------------")
@@ -156,6 +147,7 @@ def menu():
         quit()
 
 def main():
+    print("Main fired")
     create_market()
     #insert(passed_market)
     #owned_portfolio = {}
@@ -163,7 +155,6 @@ def main():
     #starting = 10000
     #balance = starting
     #returned_portfolio = ()
-    print("Main fired")
     while goto_menu:
         menu()
 
