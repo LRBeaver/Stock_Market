@@ -1,5 +1,5 @@
 __author__ = 'lyndsay.beaver'
-import sqlite3 as sq1
+#import sqlite3 as sq1
 import random as rnd
 
 #"{:,}".format(value)
@@ -62,9 +62,6 @@ def check_portfolio():
 def buy_stocks():
     global portfolio
     global balance
-    #global market
-    #print(balance)
-    #cash_available = 10000
     print('\n'+"----------------------")
     print("You chose to buy stocks")
     print("You have ${:,}".format(balance))
@@ -74,16 +71,12 @@ def buy_stocks():
     print('\n'+"----------------------")
     shares = input('How many shares do you want?: ')
     cost = int(shares) * int(market[choice])
-    portfolio.update({choice: cost})
-    #if portfolio is {}
-        #portfolio={choice:cost}
-    #portfolio = owned_portfolio
+    portfolio.update({choice: {cost : shares}})
     print("This transaction will cost: ${:,}".format(cost))
     balance = balance-cost
     print("You now have this much cash left: ${:,}".format(balance))
     print(portfolio)
     print(balance)
-    #return owned_portfolio, returned_balance
 
 def sell_stocks():
     global portfolio
@@ -99,10 +92,12 @@ def sell_stocks():
         sold_ticker=input("What stock would you like to sell?: ")
         if sold_ticker in portfolio:
             print('\n'+"----------------------")
-            print("You have " + portfolio[price])
-            shares_to_sell=input("How many shares would you like to sell?: ")
-            if shares_to_sell <= owned_shares:
-                print("Selling x shares:")
+            #print('The price of ' + ticker + ' is: $', market[ticker])
+            print("You have :" + portfolio(sold_ticker(shares)))
+            print("You have ${:,}".format(portfolio[sold_ticker]) + " worth of shares")
+            #shares_to_sell=input("How many shares would you like to sell?: ")
+            #if shares_to_sell <= owned_shares:
+                #print("Selling x shares:")
 
 def menu():
     #print(portfolio)
