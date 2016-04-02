@@ -93,7 +93,8 @@ def sell_stocks():
         if sold_ticker in portfolio:
             print('\n'+"----------------------")
             #print('The price of ' + ticker + ' is: $', market[ticker])
-            print("You have :" + portfolio(sold_ticker(shares)))
+            print(portfolio)
+            ("You have :" + portfolio(sold_ticker(shares)))
             print("You have ${:,}".format(portfolio[sold_ticker]) + " worth of shares")
             #shares_to_sell=input("How many shares would you like to sell?: ")
             #if shares_to_sell <= owned_shares:
