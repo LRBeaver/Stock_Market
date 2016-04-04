@@ -3,12 +3,22 @@ import random as rnd
 def create_market():
     global market
     stocks = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQR', 'STU', 'XYZ']
-    prices = []
-
     for x in range(len(stocks)):
-        prices.append(rnd.randint(10,20))
+        price = (rnd.randint(10, 20))
+        starting_price = price
 
-    market = dict(zip(stocks, prices))
+    full_prices = dict(zip(price, starting_price)
+    print(full_prices)
+
+    #prices = []
+    #starting_price = []
+
+    # for x in range(len(stocks)):
+    #     prices.append(rnd.randint(10,20))
+    #     #starting_price = prices
+    #market = dict(zip(stocks, full_prices))
+
+    #market = dict(zip(stocks, price, starting_price))
 
 
 def main():
