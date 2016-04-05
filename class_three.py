@@ -8,9 +8,15 @@ class Stock:
         self.current_price = current_price
         self.volatility = volatility
 
+
+
     def list_stocks(self):
         return ("Stock name is " + self.name + " and ticker is " + self.ticker + " and the price is " + str(self.starting_price))
 
+    s = Stock()
+
+    for key, value in s.__dict__.iteritems():
+        print(attr, value)
     #def __iter__(self, name, ticker, starting_price, current_price, volatility):
     #stock = Stock(self, name, ticker, starting_price, current_price, volatility)
     #for attr, value in stock.__dict__.items():
@@ -26,13 +32,18 @@ class Stock:
 #     stock4 = Stock("Jasmine Kiloton LLC", "JKL", 16, 16, 2.2)
 #     stock5 = Stock("Minnesota Natural Order", "MNO", 18, 18, 2.4)
 
-    #stock = Stock(name, ticker, starting_price, current_price, volatility)
-    #for attr, value in stock.__dict__.iteritems():
-        #print(attr, value)
+
+    # for key in dir(stock):
+    #     if not key.startswith('__'):
+    #         value = getattr(stock, key)
+
+    # if not callable(value):
+    #     print
+    #     key, value
 
 
 def main():
-    #create_market()
+    list_stocks()
     print(dir(Stock))
     print([a for a in dir(Stock) if not a.startswith('__')])
 
