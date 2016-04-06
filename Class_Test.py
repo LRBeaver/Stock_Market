@@ -9,7 +9,7 @@ class Stock:
         self.volatility = volatility
 
     def list_stocks(self):
-        return ("Sock name is " + self.name + " and ticker is " + self.ticker + " and the price is " + str(self.starting_price))
+        return ("Stock name is " + self.name + " and ticker is " + self.ticker + " and the price is " + str(self.starting_price))
 
 
 def create_market():
