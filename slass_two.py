@@ -28,9 +28,9 @@ def create_market():
 
     market = {stock1, stock2, stock3, stock4, stock5}
 
-    #stock = Stock(name, ticker, starting_price, current_price, volatility)
-    #for attr, value in stock.__dict__.iteritems():
-        #print(attr, value)
+    stock = Stock(name, ticker, starting_price, current_price, volatility)
+    for attr, value in stock.__dict__.items():
+        print(attr, value)
 
 
 def main():
