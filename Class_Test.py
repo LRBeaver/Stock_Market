@@ -25,9 +25,9 @@ def create_market():
     #def list_stocks(self):
         #return("Sock name is " + self.name + " and ticker is " + self.ticker + " and the price is " + str(starting_price))
 
-    stock = Stock(name, ticker, starting_price, current_price, volatility)
-    for attr, value in stock.__dict__.iteritems():
-        print(attr, value)
+stock = Stock(name, ticker, starting_price, current_price, volatility)
+for attr, value in stock.__dict__.items():
+    print(attr, value)
         #for i in range(numStocks):
         #issue = "stock" + str(i)
         #(issue.list_stocks())
