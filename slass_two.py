@@ -11,10 +11,10 @@ class Stock:
     def list_stocks(self):
         return ("Stock name is " + self.name + " and ticker is " + self.ticker + " and the price is " + str(self.starting_price))
 
-    #def __iter__(self, name, ticker, starting_price, current_price, volatility):
-    stock = Stock(self, name, ticker, starting_price, current_price, volatility)
-    for attr, value in stock.__dict__.items():
-        print(attr, value)
+    # #def __iter__(self, name, ticker, starting_price, current_price, volatility):
+    # stock = Stock(self, name, ticker, starting_price, current_price, volatility)
+    # for attr, value in stock.__dict__.items():
+    #     print(attr, value)
 
 def create_market():
     global market
