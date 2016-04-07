@@ -1,4 +1,5 @@
 import random as rnd
+stockList = []
 
 class Stock:
     def __init__(self, name, ticker, starting_price, current_price):
@@ -15,13 +16,15 @@ class Stock:
         print ("Stock name is " + self.name + " and ticker is " + self.ticker + " and the price is " + str(self.starting_price))
 
 def fillMarket():
-    stockList = []
+    global stockList
+
     stockList.append(Stock("American Broadcasting Corp", "ABC", 10, 10))
     stockList.append(Stock("Diversified Energy Force", "DEF", 12, 12))
     stockList.append(Stock("Global Health Inc", "GHI", 14, 14))
     stockList.append(Stock("Jasmine Kiloton LLC", "JKL", 16, 16))
     stockList.append(Stock("Minnesota Natural Order", "MNO", 18, 18))
 
+def check_market():
     print("-----------------")
     print("Showing one stock item")
     print(stockList[0].ticker)
@@ -53,6 +56,8 @@ def fillMarket():
 
 def main():
     fillMarket()
+    check_market()
+
 
 
 main()
