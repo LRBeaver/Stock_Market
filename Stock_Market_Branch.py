@@ -20,16 +20,24 @@ class Stock:
 
 def create_Market():
     global stockList
-    nameList = ("American Broadcasting Corp", "Diversified Energy Force", "Global Health Inc", "Jasmine Kiloton LLC", "Minnesota Natural Order")
+    nameList = ("American Broadcasting Corp", "Diversified Energy Force", "Global Health Inc",
+                "Jasmine Kiloton LLC", "Minnesota Natural Order")
     tickerList = ("ABC", "DEF", "GHI", "JKL", "MNO")
 
 
     for i in range(len(nameList)):
         stockName = nameList[i]
         stockTicker = tickerList[i]
-        price = (rnd.randint(10 ,20))
+        price = (rnd.randint(10, 20))
         volatility = (rnd.randint(1, 3))
         stockList.append(Stock(stockName, stockTicker, price, price, volatility))
+
+# class Portfolio:
+#     def __init__(self, ticker, purchase_price, num_shares):
+#         self.ticker = ticker
+#         self.purchase_price = purchase_price
+#         self.num_shares = num_shares
+
 
 # def insert(market):
 #     #print("Number of stocks: ", len(market))
@@ -68,7 +76,6 @@ def check_portfolio():
     print("You chose to check your portfolio")
     print('\n' + "******************")
     if portfolio == {}:
-
         print("You own no stocks")
         print("You have ${:,}".format(balance))
     else:
@@ -81,13 +88,24 @@ def buy_stocks():
     print('\n'+"----------------------")
     print("You chose to buy stocks")
     print("You have ${:,}".format(balance))
-    print(market)
+    #print(stockList)
+    for stock in stockList:
+        print("  ", stock.ticker, stock.name, stock.current_price)
     choice = input('What stock do you want to buy?: ')
-    print('The price of ' + choice + ' is: $', market[choice])
-    print('\n'+"----------------------")
-    shares = input('How many shares do you want?: ')
-    cost = int(shares) * int(market[choice])
-    portfolio.update({choice: {cost : shares}})
+    for stock in stockList:
+        if choice in stock.ticker:
+            # title() capitalizes the job's first letter
+            print("The price of %s %s is: \"%s\"" % (stock.ticker, stock.name, stock.current_price))
+            print('\n'+"----------------------")
+            shares = input('How many shares do you want?: ')
+            cost = int(shares) * int(stock.current_price)
+            if choice in portfolio:
+                print("Update")
+                portfolio.update({choice: {cost: int(shares)}})
+                #print(portfolio.ticker, cost, shares)
+            else:
+                print("New")
+                portfolio.update({choice: {cost: int(shares)}})
     print("This transaction will cost: ${:,}".format(cost))
     balance = balance-cost
     print("You now have this much cash left: ${:,}".format(balance))
