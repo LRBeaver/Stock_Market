@@ -68,6 +68,7 @@ def check_portfolio():
     print("You chose to check your portfolio")
     print('\n' + "******************")
     if portfolio == {}:
+
         print("You own no stocks")
         print("You have ${:,}".format(balance))
     else:
