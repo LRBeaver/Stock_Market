@@ -71,7 +71,7 @@ def buy_stocks():
     print('\n'+"----------------------")
     shares = input('How many shares do you want?: ')
     cost = int(shares) * int(market[choice])
-    portfolio.update({choice: {cost : shares}})
+    portfolio.update({choice: {market[choice] : shares}})
     print("This transaction will cost: ${:,}".format(cost))
     balance = balance-cost
     print("You now have this much cash left: ${:,}".format(balance))
