@@ -58,10 +58,10 @@ def buy_stocks():
     for stock in stockList:
         if choice in stock.ticker:
             if 'portfolio1' in globals():
+                print('\n' + "**********************")
                 print("Exists")
-                if portfolio1.ticker == 'ABC':
-                    print("You already own ABC")
-            # title() capitalizes the job's first letter
+                if portfolio1.ticker == choice:
+                    print("You already own ", choice)
                 else:
                     print("The price of %s %s is: \"%s\"" % (stock.ticker, stock.name, stock.current_price))
                     print('\n'+"----------------------")
@@ -74,6 +74,7 @@ def buy_stocks():
                     #print(portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares)
                     print(portfolio)
             else:
+                print('\n' + "**********************")
                 print("Empty Portfolio")
                 print("The price of %s %s is: \"%s\"" % (stock.ticker, stock.name, stock.current_price))
                 print('\n' + "----------------------")
