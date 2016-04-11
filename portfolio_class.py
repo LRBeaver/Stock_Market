@@ -1,4 +1,3 @@
-#import sqlite3 as sq1
 import random as rnd
 
 #"{:,}".format(value)
@@ -43,16 +42,11 @@ def check_Market():
     print()
     for stock in stockList:
         print("  ", stock.name, stock.ticker, stock.starting_price, stock.current_price, stock.volatility)
-    # for stock in stockList:
-    #     print()
-    #     look = 'ABC'
-    #     if look in stock.ticker:
-    #         print("%s %s: \"%s\"" % (stock.ticker, stock.name, stock.starting_price))
-
 
 def buy_stocks():
     global Portfolio
     global balance
+    global portfolio1
     print('\n'+"----------------------")
     print("You chose to buy stocks")
     print("You have ${:,}".format(balance))
@@ -70,16 +64,23 @@ def buy_stocks():
 
             if 'portfolio1' in globals():
                 print("Exists")
+                if hasattr(portfolio1, 'ticker'):
+                    print("Ticker present")
                 portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
                 portfolio = portfolio1
                 print(portfolio)
             # elif 'portfolio1' in globals():
             #     print("Exists")
             else:
-                print("New")
-                portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
-                portfolio = portfolio1
-                print(portfolio)
+                if 'portfolio1' in locals():
+                    print("New")
+                    if hasattr(portfolio1, 'ticker'):
+                        print("Ticker present")
+                    else:
+                        pass
+                    portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
+                    portfolio = portfolio1
+                    print(portfolio)
 
     print("This transaction will cost: ${:,}".format(cost))
     balance = balance-cost
