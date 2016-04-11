@@ -47,6 +47,7 @@ def buy_stocks():
     global Portfolio
     global balance
     global portfolio
+    global portfolio1
     print('\n'+"----------------------")
     print("You chose to buy stocks")
     print("You have ${:,}".format(balance))
@@ -56,27 +57,51 @@ def buy_stocks():
     choice = input('What stock do you want to buy?: ')
     for stock in stockList:
         if choice in stock.ticker:
+            if 'portfolio1' in globals():
+                print("Exists")
+                if portfolio1.ticker == 'ABC':
+                    print("You already own ABC")
             # title() capitalizes the job's first letter
-            print("The price of %s %s is: \"%s\"" % (stock.ticker, stock.name, stock.current_price))
-            print('\n'+"----------------------")
-            shares = input('How many shares do you want?: ')
-            cost = int(shares) * int(stock.current_price)
+                else:
+                    print("The price of %s %s is: \"%s\"" % (stock.ticker, stock.name, stock.current_price))
+                    print('\n'+"----------------------")
+                    shares = input('How many shares do you want?: ')
+                    cost = int(shares) * int(stock.current_price)
 
-            print(cost)
-            portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
-            portfolio = {portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares}
-            #print(portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares)
-            #print(portfolio)
+                    print(cost)
+                    portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
+                    portfolio = portfolio1 #{portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares}
+                    #print(portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares)
+                    print(portfolio)
+            else:
+                print("Empty Portfolio")
+                print("The price of %s %s is: \"%s\"" % (stock.ticker, stock.name, stock.current_price))
+                print('\n' + "----------------------")
+                shares = input('How many shares do you want?: ')
+                cost = int(shares) * int(stock.current_price)
 
-            # if 'portfolio1' in globals():
-            #     print("Exists")
-            #     if hasattr(portfolio1, 'ticker'):
-            #         print("Ticker present")
-            #     portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
-            #     portfolio = portfolio1
-            #     print(portfolio)
-            # # elif 'portfolio1' in globals():
-            # #     print("Exists")
+                print(cost)
+                portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
+                portfolio = {portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares}
+                # print(portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares)
+                print(portfolio)
+
+                # if hasattr(portfolio1, 'ticker'):
+                #     print("Ticker present")
+                # portfolio2 = Portfolio(stock.ticker, stock.current_price, shares)
+                # portfolio_two = portfolio2
+                # print("This transaction will cost: ${:,}".format(cost))
+                # balance = balance - cost
+                # print("You now have this much cash left: ${:,}".format(balance))
+                # # for p in Portfolio:
+                # print("  You purchased %s shares of %s stock, for $%s dollars per share" % (portfolio2.num_shares, portfolio2.ticker, portfolio2.purchase_price))
+                # # print(portfolio)
+                # # print(balance)
+                # print(portfolio2.ticker, portfolio2.purchase_price, portfolio21.num_shares)
+                # print(portfolio_two)
+
+            # elif 'portfolio1' in globals():
+            #      print("Exists")
             # else:
             #     if 'portfolio1' in locals():
             #         print("New")
@@ -87,16 +112,18 @@ def buy_stocks():
             #         portfolio1 = Portfolio(stock.ticker, stock.current_price, shares)
             #         portfolio = portfolio1
             #         print(portfolio)
+            #         print("This transaction will cost: ${:,}".format(cost))
+            #         balance = balance - cost
+            #         print("You now have this much cash left: ${:,}".format(balance))
+            #         # for p in Portfolio:
+            #         print("  You purchased %s shares of %s stock, for $%s dollars per share" % (
+            #         portfolio1.num_shares, portfolio1.ticker, portfolio1.purchase_price))
+            #         # print(portfolio)
+            #         # print(balance)
+            #         print(portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares)
+            #         #print(portfolio)
 
-            print("This transaction will cost: ${:,}".format(cost))
-            balance = balance-cost
-            print("You now have this much cash left: ${:,}".format(balance))
-            #for p in Portfolio:
-            print("  You purchased %s shares of %s stock, for $%s dollars per share" % (portfolio1.num_shares, portfolio1.ticker, portfolio1.purchase_price))
-            #print(portfolio)
-            #print(balance)
-            print(portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares)
-            print(portfolio)
+
 
 def check_portfolio():
     print('\n'+"----------------------")
@@ -106,7 +133,7 @@ def check_portfolio():
         print("You own no stocks")
         print("You have ${:,}".format(balance))
     else:
-        print('Portfolio: ', portfolio)
+        print('Portfolio: ', portfolio1.ticker, portfolio1.purchase_price, portfolio1.num_shares)
         print('Cash: ${:,}'.format(balance))
 
 def menu():
