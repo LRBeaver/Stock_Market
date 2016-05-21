@@ -8,19 +8,37 @@ starting = 10000
 balance = starting
 portfolio = {}
 goto_menu = True
+stockList = []
 
-def create_market():
-    global market
-    stocks = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQR', 'STU', 'XYZ']
-    prices = []
+class Stock:
+    def __init__(self, name, ticker, starting_price, current_price, volatility):
+        self.name = name
+        self.ticker = ticker
+        self.starting_price = starting_price
+        self.current_price = current_price
+        self.volatility = volatility
 
-    for x in range(len(stocks)):
-        prices.append(rnd.randint(10,20))
+def create_Market():
+    global stockList
+    nameList = ("American Broadcasting Corp", "Diversified Energy Force", "Global Health Inc",
+                "Jasmine Kiloton LLC", "Minnesota Natural Order")
+    tickerList = ("ABC", "DEF", "GHI", "JKL", "MNO")
 
-    market = dict(zip(stocks, prices))
-    #print(len(market))
-    #return market
-#
+
+    for i in range(len(nameList)):
+        stockName = nameList[i]
+        stockTicker = tickerList[i]
+        price = (rnd.randint(10, 20))
+        volatility = (rnd.randint(1, 3))
+        stockList.append(Stock(stockName, stockTicker, price, price, volatility))
+
+# class Portfolio:
+#     def __init__(self, ticker, purchase_price, num_shares):
+#         self.ticker = ticker
+#         self.purchase_price = purchase_price
+#         self.num_shares = num_shares
+
+
 # def insert(market):
 #     #print("Number of stocks: ", len(market))
 #     database1 = sq1.connect('stocks' + str(rnd.randint(1,200)) + '.db')
@@ -40,12 +58,17 @@ def create_market():
 #     db1_cursor.close()
 #     database1.close()
 
-def check_market():
+def check_Market():
     print('\n'+"----------------------")
     print('\n'+"You chose to check the market")
-    print(market)
-    #else:
-        #create_market()
+    print()
+    for stock in stockList:
+        print("  ", stock.name, stock.ticker, stock.starting_price, stock.current_price, stock.volatility)
+    for stock in stockList:
+        print()
+        look = 'ABC'
+        if look in stock.ticker:
+            print("%s %s: \"%s\"" % (stock.ticker, stock.name, stock.starting_price))
 
 
 def check_portfolio():
@@ -65,13 +88,24 @@ def buy_stocks():
     print('\n'+"----------------------")
     print("You chose to buy stocks")
     print("You have ${:,}".format(balance))
-    print(market)
+    #print(stockList)
+    for stock in stockList:
+        print("  ", stock.ticker, stock.name, stock.current_price)
     choice = input('What stock do you want to buy?: ')
-    print('The price of ' + choice + ' is: $', market[choice])
-    print('\n'+"----------------------")
-    shares = input('How many shares do you want?: ')
-    cost = int(shares) * int(market[choice])
-    portfolio.update({choice: {market[choice] : shares}})
+    for stock in stockList:
+        if choice in stock.ticker:
+            # title() capitalizes the job's first letter
+            print("The price of %s %s is: \"%s\"" % (stock.ticker, stock.name, stock.current_price))
+            print('\n'+"----------------------")
+            shares = input('How many shares do you want?: ')
+            cost = int(shares) * int(stock.current_price)
+            if choice in portfolio:
+                print("Update")
+                portfolio.update({choice: {cost: int(shares)}})
+                #print(portfolio.ticker, cost, shares)
+            else:
+                print("New")
+                portfolio.update({choice: {cost: int(shares)}})
     print("This transaction will cost: ${:,}".format(cost))
     balance = balance-cost
     print("You now have this much cash left: ${:,}".format(balance))
@@ -92,17 +126,11 @@ def sell_stocks():
         sold_ticker=input("What stock would you like to sell?: ")
         if sold_ticker in portfolio:
             print('\n'+"----------------------")
-            #print('The price of ' + ticker + ' is: $', market[ticker])
             print(portfolio)
             ("You have :" + portfolio(sold_ticker(shares)))
             print("You have ${:,}".format(portfolio[sold_ticker]) + " worth of shares")
-            #shares_to_sell=input("How many shares would you like to sell?: ")
-            #if shares_to_sell <= owned_shares:
-                #print("Selling x shares:")
 
 def menu():
-    #print(portfolio)
-    #print()
     print('\n'+"----------------------")
     print(""" Market game - stocks
         [1] Check the market
@@ -115,27 +143,18 @@ def menu():
     action = input('What would you like to do?: ')
 
     if action == '1':
-        check_market()
+        check_Market()
 
     elif action == '2':
-        #if 'portfolio' in locals():
         check_portfolio()
-             #print("You have ${:,}".format(balance))
-        #else:
-            #print('\n'+"----------------------")
-            #print("You own no stocks")
-            #print("You have ${:,}".format(balance))
+
 
     elif action == '3':
         buy_stocks()
 
     elif action == '4':
-        #if 'portfolio' in locals():
         sell_stocks()
-        #else:
-            #print('\n'+"----------------------")
-            #print("Your portfolio is empty")
-            #print("You have ${:,}".format(balance))
+
 
     else:
         print('\n'+"----------------------")
@@ -144,13 +163,7 @@ def menu():
 
 def main():
     print("Main fired")
-    create_market()
-    #insert(passed_market)
-    #owned_portfolio = {}
-    #starting_balance=0
-    #starting = 10000
-    #balance = starting
-    #returned_portfolio = ()
+    create_Market()
     while goto_menu:
         menu()
 
